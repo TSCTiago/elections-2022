@@ -4,11 +4,15 @@ import { useState } from 'react';
 import axios from 'axios';
 import { NavBar } from '../../components/navBar';
 
+type MapType = {
+  [id: string]: any;
+};
+
 export default function Candidate() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<MapType>([]);
   const baseUrl = 'http://localhost:5000/search_data_candidate';
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const selectedIndex = e.target.selectedIndex;
     const text = e.target.options[selectedIndex].text;
     console.log(text);

@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from '../../styles/pages';
 import Select from '../../components/select';
 import axios from 'axios';
 import { NavBar } from '../../components/navBar';
 
+type MapType = {
+  [id: string]: any;
+};
+
 export default function PoliticalPosition() {
   const [data, setData] = useState([]);
-  // const baseUrl = 'http://localhost:5000/search_data_candidate';
   const baseUrl = 'http://localhost:5000/search_data_candidate_by_cargo';
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const selectedIndex = e.target.selectedIndex;
     const text = e.target.options[selectedIndex].text;
     console.log(text);
@@ -41,7 +44,7 @@ export default function PoliticalPosition() {
               </S.TableRow>
             </S.TableHead>
             <S.TableBody className="table-body">
-              {data.map((candidate, index) => (
+              {data.map((candidate: MapType, index) => (
                 <S.TableRow key={index}>
                   <S.TableCell>{candidate.cand_nome}</S.TableCell>
                   <S.TableCell>{candidate.cargo_nome}</S.TableCell>

@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Select } from '../../components/select/styles';
 
 import * as S from '../../styles/pages';
 import axios from 'axios';
 import { NavBar } from '../../components/navBar';
+
+type MapType = {
+  [id: string]: any;
+};
+
 export default function GeneralResult() {
   const [data, setData] = useState([]);
   const baseUrl = 'http://localhost:5000/geral_result';
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const selectedIndex = e.target.value;
     // const text = e.target.options[selectedIndex].text;
     console.log(selectedIndex);
-    searchDatacandidate(selectedIndex);
+    searchDataGeneralResult(selectedIndex);
   };
 
-  function searchDatacandidate(selectedText: string) {
+  function searchDataGeneralResult(selectedText: string) {
     axios.get(`${baseUrl}?value=${selectedText}`).then((response) => {
       setData(response.data);
       console.log(response.data);
@@ -47,7 +52,7 @@ export default function GeneralResult() {
               </S.TableRow>
             </S.TableHead>
             <S.TableBody className="table-body">
-              {data.map((candidate, index) => (
+              {data.map((candidate: MapType, index) => (
                 <S.TableRow key={index}>
                   <S.TableCell>{candidate.cand_nome}</S.TableCell>
                   <S.TableCell>{candidate.cargo_nome}</S.TableCell>
