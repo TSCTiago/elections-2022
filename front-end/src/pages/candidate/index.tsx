@@ -1,8 +1,11 @@
-import * as S from '../../styles/pages';
-import Select from '../../components/select';
 import { useState } from 'react';
 import axios from 'axios';
 import { NavBar } from '../../components/navBar';
+import Table from '../../components/table';
+import Select from '../../components/select';
+import { candidate } from '../../baseUrls';
+import * as S from '../../styles/pages';
+// import { ScaleLoader } from 'react-spinners';
 
 type MapType = {
   [id: string]: any;
@@ -10,21 +13,15 @@ type MapType = {
 
 export default function Candidate() {
   const [data, setData] = useState<MapType>([]);
-  const baseUrl = 'http://localhost:5000/search_data_candidate';
 
   const handleChange = (e: any) => {
-    const selectedIndex = e.target.selectedIndex;
-    const text = e.target.options[selectedIndex].text;
-    console.log(text);
-    searchDatacandidate(text);
-  };
+    setData([]);
+    const selectedText = e.target.options[e.target.selectedIndex].text;
 
-  function searchDatacandidate(selectedText: string) {
-    axios.get(`${baseUrl}?name=${selectedText}`).then((response) => {
+    axios.get(`${candidate}?name=${selectedText}`).then((response) => {
       setData(response.data);
-      console.log(response.data);
     });
-  }
+  };
 
   return (
     <>
@@ -34,28 +31,8 @@ export default function Candidate() {
           <S.PageTitle>Ver resultados por Candidato</S.PageTitle>
         </div>
         <Select name="candidato" id="candidato" placeholder="Selecione o candidato" onchange={handleChange} />
-        <S.TableWrapper>
-          <S.StyledTable className="styled-table">
-            <S.TableHead>
-              <S.TableRow>
-                <S.TableHeaderCell id="inicio-th">Nome</S.TableHeaderCell>
-                <S.TableHeaderCell>Cargo</S.TableHeaderCell>
-                <S.TableHeaderCell>Votação</S.TableHeaderCell>
-                <S.TableHeaderCell id="final-th">Status</S.TableHeaderCell>
-              </S.TableRow>
-            </S.TableHead>
-            <S.TableBody className="table-body">
-              {
-                <S.TableRow>
-                  <S.TableCell>{data.cand_nome}</S.TableCell>
-                  <S.TableCell>{data.cargo_nome}</S.TableCell>
-                  <S.TableCell>{Intl.NumberFormat('pt-br').format(data.cand_votos)}</S.TableCell>
-                  <S.TableCell>{data.cand_status == 1 ? 'Eleito' : 'Não Eleito'}</S.TableCell>
-                </S.TableRow>
-              }
-            </S.TableBody>
-          </S.StyledTable>
-        </S.TableWrapper>
+        {/* {data.length > 0 ? <Table data={[data]} /> : <ScaleLoader color="#36d7b7" />} */}
+        <Table data={[data]} />
       </S.PagesSection>
     </>
   );

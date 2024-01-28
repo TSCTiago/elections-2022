@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import * as S from './styles';
 import axios from 'axios';
+type MapType = {
+  [id: string]: any;
+};
 
 interface SelectProps {
   placeholder: string;
@@ -22,7 +25,7 @@ export default function Select({ placeholder, name, id, onchange }: SelectProps)
     <S.SelectArea>
       <S.Select name={name} id={id} onChange={onchange}>
         <option value="">{placeholder}</option>
-        {data.map((elem, i) => (
+        {data.map((elem: MapType, i) => (
           <option key={i} value={elem.id}>
             {elem.nome}
           </option>

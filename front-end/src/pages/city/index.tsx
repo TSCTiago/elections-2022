@@ -1,30 +1,23 @@
 import { useState } from 'react';
-import * as S from '../../styles/pages';
-import Select from '../../components/select';
 import axios from 'axios';
 import { NavBar } from '../../components/navBar';
-
-type MapType = {
-  [id: string]: any;
-};
+import Table from '../../components/table';
+import Select from '../../components/select';
+import { city } from '../../baseUrls';
+import * as S from '../../styles/pages';
 
 export default function City() {
   const [data, setData] = useState([]);
-  const baseUrl = 'http://localhost:5000/search_data_candidate_by_municipio';
 
   const handleChange = (e: any) => {
-    const selectedIndex = e.target.selectedIndex;
-    const text = e.target.options[selectedIndex].text;
-    console.log(text);
-    searchDataCity(text);
-  };
+    setData([]);
+    const selectedText = e.target.options[e.target.selectedIndex].text;
 
-  function searchDataCity(selectedText: string) {
-    axios.get(`${baseUrl}?municipio=${selectedText}`).then((response) => {
+    axios.get(`${city}?municipio=${selectedText}`).then((response) => {
       setData(response.data);
       console.log(response.data);
     });
-  }
+  };
 
   return (
     <>
@@ -34,28 +27,7 @@ export default function City() {
           <S.PageTitle>Ver resultados por Município</S.PageTitle>
         </div>
         <Select name="municipio" id="municipio" placeholder="Selecione um município" onchange={handleChange} />
-        <S.TableWrapper>
-          <S.StyledTable className="styled-table">
-            <S.TableHead>
-              <S.TableRow>
-                <S.TableHeaderCell id="inicio-th">Nome</S.TableHeaderCell>
-                <S.TableHeaderCell>Cargo</S.TableHeaderCell>
-                <S.TableHeaderCell>Votação</S.TableHeaderCell>
-                <S.TableHeaderCell id="final-th">Status</S.TableHeaderCell>
-              </S.TableRow>
-            </S.TableHead>
-            <S.TableBody className="table-body">
-              {data.map((candidate: MapType, index) => (
-                <S.TableRow key={index}>
-                  <S.TableCell>{candidate.cand_nome}</S.TableCell>
-                  <S.TableCell>{candidate.cargo_nome}</S.TableCell>
-                  <S.TableCell>{Intl.NumberFormat('pt-br').format(candidate.cand_votos)}</S.TableCell>
-                  <S.TableCell>{candidate.cand_status === 1 ? 'Eleito' : 'Não Eleito'}</S.TableCell>
-                </S.TableRow>
-              ))}
-            </S.TableBody>
-          </S.StyledTable>
-        </S.TableWrapper>
+        <Table data={data} />
       </S.PagesSection>
     </>
   );
