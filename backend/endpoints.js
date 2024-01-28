@@ -37,47 +37,9 @@ function populateSelect(request, response) {
 
   databaseSearch(sql, response);
 }
-// function populateSelect(request, response) {
-//   let name = request.body.table;
-//   const querys = {
-//     q1: `SELECT
-//              id, nome 
-//              FROM candidato 
-//              WHERE tipo=1 
-//              ORDER BY nome`,
 
-//     q2: `SELECT
-//              id, nome 
-//              FROM cargo 
-//              ORDER BY id`,
-
-//     q3: `SELECT
-//              id, nome 
-//              FROM municipio 
-//              ORDER BY nome`,
-//   };
-
-//   let sql = "";
-
-//   switch (name) {
-//     case "candidato":
-//       sql = querys.q1;
-//       break;
-//     case "cargo":
-//       sql = querys.q2;
-//       break;
-//     case "municipio":
-//       sql = querys.q3;
-//       break;
-//     default:
-//       break;
-//   }
-
-//   databaseSearch(sql, response);
-// }
 
 function searchCandidate(request, response) {
-  console.log('chegou aqui')
   const nome = request.query.name;
 
   const sql = `SELECT 
@@ -109,7 +71,7 @@ function searchCandidateByCargo(request, response) {
 function searchCandidateByMunicipio(request, response) {
   const municipio = request.query.municipio;
   const sql = `SELECT 
-                cand_nome, cargo_nome, cand_votos, cand_status 
+                cand_nome, cand_status as cargo_nome, cand_votos, cargo_nome as cand_status
                 FROM votos_cand_municipio 
                 WHERE muni_nome 
                 LIKE '${municipio}' 
@@ -160,10 +122,8 @@ function generalResult(request, response) {
 }
 
 function databaseSearch(query, response) {
-  console.log(query)
   sqlite.database.all(query, (error, rows) => {
     if (error) {
-      console.log('deu erro')
       throw Error(error.message);
     }
 

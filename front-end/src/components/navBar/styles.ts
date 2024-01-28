@@ -53,7 +53,7 @@ export const NavbarContainer = styled.nav<NavbarProps>`
 `;
 
 export const Img = styled.img`
-  max-width: 40px;
+  max-width: 70px;
 
   @media (max-width: 700px) {
     display: none;
@@ -68,11 +68,11 @@ export const NavbarLinkContainer = styled.div`
 const LinkBaseStyle = css`
   color: white;
   font-size: 1.2rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: GothamBold;
   text-decoration: none;
   font-weight: bold;
   transition: 0.5s;
-  text-transform: capitalize;
+  text-transform: lowercase;
 
   &:hover {
     color: #ffa334;

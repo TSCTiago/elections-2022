@@ -1,26 +1,29 @@
 import styled from 'styled-components';
 import background from '../assets/img/background-image.png';
 export const PagesSection = styled.section`
-  /* height: 100; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  overflow-x: hidden;
+  padding: 50px;
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.685), rgba(0, 0, 0, 0.822)), url(${background});
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 100% 45%;
+  @media (max-width: 700px) {
+    padding: 50px 10px;
+  }
 `;
 
 export const PageTitle = styled.h1`
+  text-align: center;
   font-family: GothamBold;
   text-transform: uppercase;
-  font-size: 2.5rem;
-  /* color: #3c389e; */
+  font-size: 2rem;
   color: white;
   margin-bottom: 50px;
+  @media (max-width: 700px) {
+    font-size: 1.7rem;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -64,4 +67,9 @@ export const TableHeaderCell = styled.th`
 
 export const TableCell = styled.td`
   padding: 8px 15px;
+`;
+
+export const Div = styled.div`
+  height: 70vh;
+  width: 1px;
 `;

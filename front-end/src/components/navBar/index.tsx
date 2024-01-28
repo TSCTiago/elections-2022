@@ -16,17 +16,17 @@ export function NavBar() {
         </S.BackButton>
 
         <S.NavbarLinkContainer>
-          <S.NavbarLink to="/candidate">Por Candidato</S.NavbarLink>
-          <S.NavbarLink to="/political-position">Por Cargo</S.NavbarLink>
-          <S.NavbarLink to="/city">Por Município</S.NavbarLink>
+          <S.NavbarLink to="/candidate">Candidato</S.NavbarLink>
+          <S.NavbarLink to="/political-position">Cargo</S.NavbarLink>
+          <S.NavbarLink to="/city">Município</S.NavbarLink>
           <S.NavbarLink to="/general-result">Resultado Geral</S.NavbarLink>
           <S.ButtonLink onClick={() => setExtendNavbar((curr) => !curr)}>{extendNavbar ? <FaXmark /> : <FaBars />}</S.ButtonLink>
         </S.NavbarLinkContainer>
         {extendNavbar && (
           <S.ExtendedNavbar>
-            <S.NavbarLinkExtended to="/candidate">Por Candidato</S.NavbarLinkExtended>
-            <S.NavbarLinkExtended to="/political-position">Por Cargo</S.NavbarLinkExtended>
-            <S.NavbarLinkExtended to="/city">Por Município</S.NavbarLinkExtended>
+            <S.NavbarLinkExtended to="/candidate">Candidato</S.NavbarLinkExtended>
+            <S.NavbarLinkExtended to="/political-position">Cargo</S.NavbarLinkExtended>
+            <S.NavbarLinkExtended to="/city">Município</S.NavbarLinkExtended>
             <S.NavbarLinkExtended to="/general-result">Resultado Geral</S.NavbarLinkExtended>
           </S.ExtendedNavbar>
         )}

@@ -4,7 +4,6 @@
 
  const database = new sqlite.Database(filepath, (error) => {
      if (error) {
-        console.log('deu errrro')
          console.log(error.message)
      }
  })

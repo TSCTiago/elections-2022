@@ -29,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100%;
-    font-family: 'Prompt', sans-serif;
+    font-family: GothamLight, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 

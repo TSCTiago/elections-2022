@@ -19,7 +19,7 @@ export default function Candidate() {
     const selectedText = e.target.options[e.target.selectedIndex].text;
 
     axios.get(`${candidate}?name=${selectedText}`).then((response) => {
-      setData(response.data);
+      setData([response.data]);
     });
   };
 
@@ -31,8 +31,8 @@ export default function Candidate() {
           <S.PageTitle>Ver resultados por Candidato</S.PageTitle>
         </div>
         <Select name="candidato" id="candidato" placeholder="Selecione o candidato" onchange={handleChange} />
-        {/* {data.length > 0 ? <Table data={[data]} /> : <ScaleLoader color="#36d7b7" />} */}
-        <Table data={[data]} />
+        <Table data={data} />
+        <S.Div />
       </S.PagesSection>
     </>
   );

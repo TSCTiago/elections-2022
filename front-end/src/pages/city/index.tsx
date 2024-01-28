@@ -15,7 +15,6 @@ export default function City() {
 
     axios.get(`${city}?municipio=${selectedText}`).then((response) => {
       setData(response.data);
-      console.log(response.data);
     });
   };
 
@@ -23,11 +22,11 @@ export default function City() {
     <>
       <NavBar />
       <S.PagesSection>
-        <div>
-          <S.PageTitle>Ver resultados por Município</S.PageTitle>
-        </div>
+        <S.PageTitle>Ver resultados por Município</S.PageTitle>
+
         <Select name="municipio" id="municipio" placeholder="Selecione um município" onchange={handleChange} />
         <Table data={data} />
+        <S.Div />
       </S.PagesSection>
     </>
   );

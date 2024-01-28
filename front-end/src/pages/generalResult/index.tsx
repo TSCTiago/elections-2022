@@ -15,7 +15,6 @@ export default function GeneralResult() {
 
     axios.get(`${generalResult}?value=${selectedText}`).then((response) => {
       setData(response.data);
-      console.log(response.data);
     });
   };
 
@@ -33,6 +32,7 @@ export default function GeneralResult() {
           <option value="2">Não Eleitos</option>
         </Select>
         <Table data={data} />
+        <S.Div />
       </S.PagesSection>
     </>
   );

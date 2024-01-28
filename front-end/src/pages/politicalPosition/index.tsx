@@ -14,7 +14,6 @@ export default function PoliticalPosition() {
 
     axios.get(`${politicalPosition}?cargo=${selectedText}`).then((response) => {
       setData(response.data);
-      console.log(response.data);
     });
   };
 
@@ -22,11 +21,12 @@ export default function PoliticalPosition() {
     <>
       <NavBar />
       <S.PagesSection>
-        <div>
-          <S.PageTitle>Ver resultados por Cargo</S.PageTitle>
-        </div>
+        <S.PageTitle>Ver resultados por Cargo</S.PageTitle>
+
         <Select name="cargo" id="cargo" placeholder="Selecione um cargo" onchange={handleChange} />
         <Table data={data} />
+
+        <S.Div />
       </S.PagesSection>
     </>
   );
